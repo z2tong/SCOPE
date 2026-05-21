@@ -32,9 +32,12 @@ We are excited to introduce **SCOPE**, an open-source interactive world model fo
 <div align="center">
   <table>
     <tr>
-      <td align="center"><img src="assets/demo_it_takes_two.gif" width="280"><br><sub>It Takes Two</sub></td>
-      <td align="center"><img src="assets/demo_genshin_impact.gif" width="280"><br><sub>Genshin Impact</sub></td>
-      <td align="center"><img src="assets/demo_black_myth_wukong.gif" width="280"><br><sub>Black Myth: Wukong</sub></td>
+      <td align="center"><img src="assets/demo_it_takes_two.gif" width="380"><br><sub>It Takes Two</sub></td>
+      <td align="center"><img src="assets/demo_genshin_impact.gif" width="380"><br><sub>Genshin Impact</sub></td>
+    </tr>
+    <tr>
+      <td align="center"><img src="assets/demo_black_myth_wukong.gif" width="380"><br><sub>Black Myth: Wukong</sub></td>
+      <td align="center"><img src="assets/demo_desert.gif" width="380"><br><sub>Desert</sub></td>
     </tr>
   </table>
 </div>
