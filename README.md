@@ -32,9 +32,9 @@ We are excited to introduce <b><span style="color:rgb(30,100,200)">S</span><span
 <div align="center">
   <table>
     <tr>
-      <td align="center"><img src="examples/example_0/image.png" width="280"><br><sub>It Takes Two</sub></td>
-      <td align="center"><img src="examples/example_1/image.png" width="280"><br><sub>Genshin Impact</sub></td>
-      <td align="center"><img src="examples/example_2/image.png" width="280"><br><sub>Black Myth: Wukong</sub></td>
+      <td align="center"><img src="assets/demo_it_takes_two.gif" width="280"><br><sub>It Takes Two</sub></td>
+      <td align="center"><img src="assets/demo_genshin_impact.gif" width="280"><br><sub>Genshin Impact</sub></td>
+      <td align="center"><img src="assets/demo_black_myth_wukong.gif" width="280"><br><sub>Black Myth: Wukong</sub></td>
     </tr>
   </table>
 </div>
@@ -251,7 +251,7 @@ If you find this work useful for your research, please cite our paper:
 ```bibtex
 @article{scope2026,
   title={SCOPE: Simulating Cross-game Operations in Playable Environments for FPS World Models},
-  author={Tong, Zizhao and Lai, Hongfeng and Wang, Zeqing and Xing, Zhaohu and Cheng, Kexu and Xu, Haoran and Pu, Zhao and Zhu, Shangwen and Feng, Ruili and Zhao, Jian and Zhang, Yan and Tang, Hao and Jin, Yeying and Shao, Ling},
+  author={Zizhao Tong and Hongfeng Lai and Zeqing Wang and Zhaohu Xing and Kexu Cheng and Haoran Xu and Zhao Pu and Shangwen Zhu and Ruili Feng and Jian Zhao and Yan Zhang and Hao Tang and Yeying Jin and Ling Shao},
   year={2026}
 }
 ```
