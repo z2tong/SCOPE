@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "scope"
+version = "1.0.0"
+description = "SCOPE: Simulating Cross-game Operations in Playable Environments for FPS World Models"
+license = {text = "Apache-2.0"}
+requires-python = ">=3.10"
+dependencies = [
+    "torch>=2.0.0",
+    "torchvision",
+    "transformers",
+    "safetensors",
+    "einops",
+    "modelscope",
+    "sentencepiece",
+    "protobuf",
+    "ftfy",
+    "numpy",
+    "pillow",
+    "tqdm",
+    "imageio",
+    "imageio[ffmpeg]",
+    "opencv-python",
+    "pynvml",
+]
+
+[project.optional-dependencies]
+flash-attn = [
+    "flash-attn>=2.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["./"]
+include = ["diffsynth", "diffsynth.*"]

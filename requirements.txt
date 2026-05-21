@@ -1,0 +1,16 @@
+torch>=2.0.0
+torchvision
+transformers
+safetensors
+einops
+modelscope
+sentencepiece
+protobuf
+ftfy
+numpy
+pillow
+tqdm
+imageio
+imageio[ffmpeg]
+opencv-python
+pynvml
