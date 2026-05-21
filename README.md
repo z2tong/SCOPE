@@ -1,9 +1,9 @@
 <div align="center">
   <img src="assets/teaser.jpg">
 
-# ${\color{#1E64C8}\textbf{S}}{\color{#3CA0DC}\textbf{C}}{\color{#3CA0DC}\textbf{O}}{\color{#D27828}\textbf{P}}{\color{#B4501E}\textbf{E}}$: ${\color{#1E64C8}\textbf{S}}$**imulating** ${\color{#3CA0DC}\textbf{C}}$**ross-game** ${\color{#3CA0DC}\textbf{O}}$**perations in** ${\color{#D27828}\textbf{P}}$**layable** ${\color{#B4501E}\textbf{E}}$**nvironments for FPS World Models**
+<h1>SCOPE: Simulating Cross-game Operations in Playable Environments for FPS World Models</h1>
 
-${\color{#1E64C8}\textbf{S}}{\color{#3CA0DC}\textbf{C}}{\color{#3CA0DC}\textbf{O}}{\color{#D27828}\textbf{P}}{\color{#B4501E}\textbf{E}}$ is an interactive world model for FPS games with 10-DoF action control, trained on 69K clips across 7 games.
+${\color{#1E64C8}\textsf{\textbf{S}}}{\color{#3CA0DC}\textsf{\textbf{C}}}{\color{#3CA0DC}\textsf{\textbf{O}}}{\color{#D27828}\textsf{\textbf{P}}}{\color{#B4501E}\textsf{\textbf{E}}}$ is an interactive world model for FPS games with 10-DoF action control, trained on 69K clips across 7 games.
 
 </div>
 
