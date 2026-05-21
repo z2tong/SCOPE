@@ -1,7 +1,7 @@
 <div align="center">
   <img src="assets/teaser.jpg">
 
-<h1><span style="color:rgb(30,100,200)">S</span>imulating <span style="color:rgb(60,160,220)">C</span>ross-game <span style="color:rgb(60,160,220)">O</span>perations in <span style="color:rgb(210,120,40)">P</span>layable <span style="color:rgb(180,80,30)">E</span>nvironments</h1>
+<h1><span style="color:rgb(30,100,200)">S</span><span style="color:rgb(60,160,220)">C</span><span style="color:rgb(60,160,220)">O</span><span style="color:rgb(210,120,40)">P</span><span style="color:rgb(180,80,30)">E</span>: <span style="color:rgb(30,100,200)">S</span>imulating <span style="color:rgb(60,160,220)">C</span>ross-game <span style="color:rgb(60,160,220)">O</span>perations in <span style="color:rgb(210,120,40)">P</span>layable <span style="color:rgb(180,80,30)">E</span>nvironments</h1>
 
 <b><span style="color:rgb(30,100,200)">S</span><span style="color:rgb(60,160,220)">C</span><span style="color:rgb(60,160,220)">O</span><span style="color:rgb(210,120,40)">P</span><span style="color:rgb(180,80,30)">E</span></b> is an interactive world model for FPS games with 10-DoF action control, trained on 69K clips across 7 games.
 
