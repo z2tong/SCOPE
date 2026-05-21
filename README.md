@@ -3,7 +3,7 @@
 
 <h1>SCOPE: Simulating Cross-game Operations in Playable Environments for FPS World Models</h1>
 
-${\color{#1E64C8}\textsf{\textbf{S}}}{\color{#3CA0DC}\textsf{\textbf{C}}}{\color{#3CA0DC}\textsf{\textbf{O}}}{\color{#D27828}\textsf{\textbf{P}}}{\color{#B4501E}\textsf{\textbf{E}}}$ is an interactive world model for FPS games with 10-DoF action control, trained on 69K clips across 7 games.
+**SCOPE** is an interactive world model for FPS games with 10-DoF action control, trained on 69K clips across 7 games.
 
 </div>
 
@@ -21,7 +21,7 @@ ${\color{#1E64C8}\textsf{\textbf{S}}}{\color{#3CA0DC}\textsf{\textbf{C}}}{\color
 
 -----
 
-We are excited to introduce ${\color{#1E64C8}\textbf{S}}{\color{#3CA0DC}\textbf{C}}{\color{#3CA0DC}\textbf{O}}{\color{#D27828}\textbf{P}}{\color{#B4501E}\textbf{E}}$, an open-source interactive world model for first-person shooter (FPS) games. Positioned as a top-tier action-conditioned world model, it offers the following features.
+We are excited to introduce **SCOPE**, an open-source interactive world model for first-person shooter (FPS) games. Positioned as a top-tier action-conditioned world model, it offers the following features.
 - **Hybrid Action Space**: Jointly processes continuous (4D dual-joystick) and discrete (6 binary buttons) control signals within a unified framework — the first FPS world model to do so.
 - **Dense Per-Frame Conditioning**: Resolves overlapping actions at every single frame, enabling simultaneous multi-action composition (e.g., moving + aiming + firing) that reflects real gameplay complexity.
 - **Cross-Game Generalization**: Trained on 7 diverse FPS titles, a single model generalizes zero-shot to entirely unseen game environments without fine-tuning.
