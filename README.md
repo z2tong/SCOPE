@@ -1,9 +1,9 @@
 <div align="center">
   <img src="assets/teaser.jpg">
 
-<h1><span style="color:rgb(30,100,200)">S</span><span style="color:rgb(60,160,220)">C</span><span style="color:rgb(60,160,220)">O</span><span style="color:rgb(210,120,40)">P</span><span style="color:rgb(180,80,30)">E</span>: <span style="color:rgb(30,100,200)">S</span>imulating <span style="color:rgb(60,160,220)">C</span>ross-game <span style="color:rgb(60,160,220)">O</span>perations in <span style="color:rgb(210,120,40)">P</span>layable <span style="color:rgb(180,80,30)">E</span>nvironments</h1>
+# ${\color{#1E64C8}\textbf{S}}{\color{#3CA0DC}\textbf{C}}{\color{#3CA0DC}\textbf{O}}{\color{#D27828}\textbf{P}}{\color{#B4501E}\textbf{E}}$: ${\color{#1E64C8}\textbf{S}}$imulating ${\color{#3CA0DC}\textbf{C}}$ross-game ${\color{#3CA0DC}\textbf{O}}$perations in ${\color{#D27828}\textbf{P}}$layable ${\color{#B4501E}\textbf{E}}$nvironments for FPS World Models
 
-<b><span style="color:rgb(30,100,200)">S</span><span style="color:rgb(60,160,220)">C</span><span style="color:rgb(60,160,220)">O</span><span style="color:rgb(210,120,40)">P</span><span style="color:rgb(180,80,30)">E</span></b> is an interactive world model for FPS games with 10-DoF action control, trained on 69K clips across 7 games.
+${\color{#1E64C8}\textbf{S}}{\color{#3CA0DC}\textbf{C}}{\color{#3CA0DC}\textbf{O}}{\color{#D27828}\textbf{P}}{\color{#B4501E}\textbf{E}}$ is an interactive world model for FPS games with 10-DoF action control, trained on 69K clips across 7 games.
 
 </div>
 
@@ -21,7 +21,7 @@
 
 -----
 
-We are excited to introduce <b><span style="color:rgb(30,100,200)">S</span><span style="color:rgb(60,160,220)">C</span><span style="color:rgb(60,160,220)">O</span><span style="color:rgb(210,120,40)">P</span><span style="color:rgb(180,80,30)">E</span></b>, an open-source interactive world model for first-person shooter (FPS) games. Positioned as a top-tier action-conditioned world model, it offers the following features.
+We are excited to introduce ${\color{#1E64C8}\textbf{S}}{\color{#3CA0DC}\textbf{C}}{\color{#3CA0DC}\textbf{O}}{\color{#D27828}\textbf{P}}{\color{#B4501E}\textbf{E}}$, an open-source interactive world model for first-person shooter (FPS) games. Positioned as a top-tier action-conditioned world model, it offers the following features.
 - **Hybrid Action Space**: Jointly processes continuous (4D dual-joystick) and discrete (6 binary buttons) control signals within a unified framework — the first FPS world model to do so.
 - **Dense Per-Frame Conditioning**: Resolves overlapping actions at every single frame, enabling simultaneous multi-action composition (e.g., moving + aiming + firing) that reflects real gameplay complexity.
 - **Cross-Game Generalization**: Trained on 7 diverse FPS titles, a single model generalizes zero-shot to entirely unseen game environments without fine-tuning.
