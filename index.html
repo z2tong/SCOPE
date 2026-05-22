@@ -190,13 +190,13 @@
     <div class="content has-text-justified">
       <p><span class="scope-text"><span class="ts">S</span><span class="tc">C</span><span class="to">O</span><span class="tp">P</span><span class="te">E</span></span> inserts a spatial action decoupling module into each DiT block. Discrete events use cross-attention to confine effects to in-scope regions; continuous controls use MLP fusion and temporal self-attention for smooth ego-motion. All output projections are zero-initialized for stable residual training.</p>
     </div>
-    <figure class="image"><img src="static/method.svg" alt="SCOPE architecture"></figure>
+    <figure class="image"><img src="static/method.svg" loading="lazy" alt="SCOPE architecture"></figure>
     <p class="has-text-centered is-size-7 mt-2"><strong>Figure 1.</strong> <span class="scope-text"><span class="ts">S</span><span class="tc">C</span><span class="to">O</span><span class="tp">P</span><span class="te">E</span></span> architecture with dual-pathway spatial action decoupling module.</p>
 
     <div class="content has-text-justified mt-5">
       <p><span class="scope-text"><span class="ts">S</span><span class="tc">C</span><span class="to">O</span><span class="tp">P</span><span class="te">E</span></span> is trained on <strong>CrossFPS</strong>, a multi-game dataset with 69K clips from 7 FPS titles and frame-aligned 10-DoF gamepad telemetry.</p>
     </div>
-    <figure class="image"><img src="static/dataset.svg" alt="CrossFPS dataset"></figure>
+    <figure class="image"><img src="static/dataset.svg" loading="lazy" alt="CrossFPS dataset"></figure>
     <p class="has-text-centered is-size-7 mt-2"><strong>Figure 2.</strong> CrossFPS: 69K clips across 7 FPS titles with per-frame 10-DoF action annotations.</p>
   </div>
 </section>
@@ -331,7 +331,7 @@ function makeVideoCard(src, label, isHighlight) {
   const card = document.createElement('div');
   card.className = 'video-card' + (isHighlight ? ' highlight' : '');
   card.innerHTML = `
-    <video src="${src}" loop playsinline preload="metadata" muted></video>
+    <video src="${src}" loop playsinline preload="none" muted></video>
     <div class="card-label">${label}</div>
     <div class="card-controls">
       <button class="play-btn-card"><i class="fas fa-play"></i></button>
@@ -361,13 +361,13 @@ function makeVideoCard(src, label, isHighlight) {
 // ── Rich Action Control ──
 const ctrlGrid = document.getElementById('grid-ctrl');
 [
-  ['static/videos/ctrl_scope_fire1.mp4', 'Call of Duty Style: Post-Apocalyptic Outpost'],
   ['static/videos/ctrl_scope_fire2.mp4', 'Call of Duty Style: Urban Combat Zone'],
-  ['static/videos/ctrl_fire_reload.mp4', 'Genshin Impact Style: Open-World Grassland'],
   ['static/videos/15.mp4', 'Custom Scene: Ancient Roman Colosseum'],
   ['static/videos/14.mp4', 'Custom Scene: Traditional Japanese Temple'],
-  ['static/videos/13.mp4', 'Custom Scene: Modern Metropolitan Boulevard'],
   ['static/videos/12_new.mp4', 'Genshin Impact Style: Lakeside Meadow'],
+  ['static/videos/ctrl_fire_reload.mp4', 'Genshin Impact Style: Open-World Grassland'],
+  ['static/videos/ctrl_scope_fire1.mp4', 'Call of Duty Style: Post-Apocalyptic Outpost'],
+  ['static/videos/10.mp4', 'Call of Duty Style: Urban Warzone Rooftop'],
   ['static/videos/8.mp4', 'Call of Duty Style: Warzone Settlement'],
   ['static/videos/9.mp4', 'Call of Duty Style: Aerial Battlefield'],
 ].forEach(([src, label]) => ctrlGrid.appendChild(makeVideoCard(src, label, false)));
@@ -381,13 +381,13 @@ const scenesGrid = document.getElementById('grid-scenes');
   ['static/videos/3.mp4', 'Genshin Impact Style: Eastern Fantasy Lakeside', false],
   ['static/videos/3_highlight.mp4', 'Genshin Impact Style: Eastern Lakeside (Highlight)', true],
   ['static/videos/4.mp4', 'Genshin Impact Style: Open-World Riverside', false],
+  ['static/videos/6.mp4', 'Black Myth Wukong Style: Ancient Mountain Temple', false],
   ['static/videos/7.mp4', 'Black Myth Wukong Style: Misty Pagoda Ravine', false],
   ['static/videos/7_highlight.mp4', 'Black Myth Wukong Style: Pagoda Ravine (Highlight)', true],
-  ['static/videos/6.mp4', 'Black Myth Wukong Style: Ancient Mountain Temple', false],
   ['static/videos/11.mp4', 'Custom Scene: Arid Canyon with Hostile NPC', false],
   ['static/videos/11_highlight.mp4', 'Custom Scene: Arid Canyon (Highlight)', true],
   ['static/videos/5.mp4', 'Genshin Impact Style: Verdant Highland', false],
-  ['static/videos/10.mp4', 'Call of Duty Style: Urban Warzone Rooftop', false],
+  ['static/videos/13.mp4', 'Custom Scene: Modern Metropolitan Boulevard', false],
   ['static/videos/12.mp4', 'Xonotic Style: Arena', false],
   ['static/videos/xonotic_1.mp4', 'Xonotic Style: Corridor Navigation', false],
 ].forEach(([src, label, hl]) => scenesGrid.appendChild(makeVideoCard(src, label, hl)));
