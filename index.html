@@ -52,7 +52,7 @@
     .video-card { border: 1px solid #e8e8e8; border-radius: 8px; overflow: hidden; transition: box-shadow 0.2s; }
     .video-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
     .video-card.highlight { border-color: #f0a040; }
-    .video-card video { width: 100%; display: block; }
+    .video-card video { width: 100%; display: block; background: #000; aspect-ratio: 16/9; }
     .video-card .card-label { padding: 8px 12px; font-family: 'Google Sans', sans-serif; font-size: 13px; font-weight: 600; color: #333; border-top: 1px solid #eee; }
     .video-card .card-controls { display: flex; align-items: center; gap: 6px; padding: 4px 12px 8px; }
     .play-btn-card { background: #4169e1; color: #fff; border: none; border-radius: 4px; width: 26px; height: 22px; cursor: pointer; font-size: 10px; display: flex; align-items: center; justify-content: center; }
@@ -331,7 +331,7 @@ function makeVideoCard(src, label, isHighlight) {
   const card = document.createElement('div');
   card.className = 'video-card' + (isHighlight ? ' highlight' : '');
   card.innerHTML = `
-    <video src="${src}" loop playsinline preload="none" muted></video>
+    <video src="${src}" loop playsinline preload="metadata" muted></video>
     <div class="card-label">${label}</div>
     <div class="card-controls">
       <button class="play-btn-card"><i class="fas fa-play"></i></button>
