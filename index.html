@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="SCOPE: Simulating Cross-game Operations in Playable Environments for FPS World Models">
+  <meta name="keywords" content="SCOPE, FPS, World Model, Video Generation, Action Control">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SCOPE: Simulating Cross-game Operations in Playable Environments</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <style>
+    .publication-title { font-family: 'Google Sans', sans-serif; }
+    .title-s { color: rgb(30,100,200); }
+    .title-c { color: rgb(60,160,220); }
+    .title-o { color: rgb(60,160,220); }
+    .title-p { color: rgb(210,120,40); }
+    .title-e { color: rgb(180,80,30); }
+    .scope-text .ts { color: rgb(30,100,200); font-weight: 700; }
+    .scope-text .tc { color: rgb(60,160,220); font-weight: 700; }
+    .scope-text .to { color: rgb(60,160,220); font-weight: 700; }
+    .scope-text .tp { color: rgb(210,120,40); font-weight: 700; }
+    .scope-text .te { color: rgb(180,80,30); font-weight: 700; }
+    .publication-authors { margin-bottom: 0.5rem; }
+    .publication-authors a { color: #363636; }
+    .publication-authors a:hover { color: #4169e1; }
+    .affiliations { font-size: 14px; color: #666; margin-bottom: 1rem; }
+    .section-title { font-family: 'Google Sans', sans-serif; }
+
+    /* Top Navigation */
+    .top-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 0.9rem 3rem; display: flex; justify-content: space-between; align-items: center;
+      background: rgba(255,255,255,0.88); backdrop-filter: blur(16px);
+      border-bottom: 1px solid #e8e8e8;
+    }
+    .top-nav .nav-logo { text-decoration: none; }
+    .top-nav .nav-logo img { height: 26px; vertical-align: middle; }
+    .top-nav .nav-links { display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0; }
+    .top-nav .nav-links a { color: #666; text-decoration: none; font-size: 0.88rem; font-weight: 500; transition: color 0.2s; }
+    .top-nav .nav-links a:hover { color: #4169e1; }
+    @media (max-width: 768px) { .top-nav { padding: 0.7rem 1.2rem; } .top-nav .nav-links { gap: 1rem; } }
+    @media (max-width: 560px) { .top-nav .nav-links { display: none; } }
+
+    /* Video grid - 3 per row */
+    .video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 1.5rem; }
+    @media (max-width: 1100px) { .video-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 768px) { .video-grid { grid-template-columns: 1fr; } }
+    .video-card { border: 1px solid #e8e8e8; border-radius: 8px; overflow: hidden; transition: box-shadow 0.2s; }
+    .video-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+    .video-card.highlight { border-color: #f0a040; }
+    .video-card video { width: 100%; display: block; }
+    .video-card .card-label { padding: 8px 12px; font-family: 'Google Sans', sans-serif; font-size: 13px; font-weight: 600; color: #333; border-top: 1px solid #eee; }
+    .video-card .card-controls { display: flex; align-items: center; gap: 6px; padding: 4px 12px 8px; }
+    .play-btn-card { background: #4169e1; color: #fff; border: none; border-radius: 4px; width: 26px; height: 22px; cursor: pointer; font-size: 10px; display: flex; align-items: center; justify-content: center; }
+    .play-btn-card:hover { background: #3358c4; }
+
+    /* Comparison */
+    .compare-block { margin-bottom: 2rem; }
+    .compare-video-wrap { border-radius: 8px; overflow: hidden; border: 1px solid #e8e8e8; margin-bottom: 0.75rem; }
+    .compare-video-wrap video { width: 100%; display: block; }
+    .compare-labels { display: grid; grid-template-columns: repeat(5, 1fr); }
+    .compare-labels span { font-family: 'Google Sans', sans-serif; font-size: 12px; font-weight: 700; padding: 5px 8px; text-align: center; color: #fff; }
+    .compare-labels .label-baseline { background: rgba(80,80,80,0.75); }
+    .compare-labels .label-ours { background: rgba(65,105,225,0.85); }
+    .compare-controls { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+    /* Tables */
+    .results-table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 1rem 0; }
+    .results-table th, .results-table td { padding: 8px 12px; text-align: center; border-bottom: 1px solid #eee; }
+    .results-table th { background: #f7f8fc; font-weight: 700; color: #333; border-bottom: 2px solid #ddd; }
+    .results-table .row-ours { background: rgba(65,105,225,0.06); font-weight: 600; }
+    .results-table .best { color: #c41e3a; font-weight: 700; }
+    .results-table .second { color: #2563eb; font-weight: 600; }
+    .results-table .third { color: #059669; }
+    .results-table .method-col { text-align: left; font-weight: 600; }
+    .table-caption { font-size: 13px; color: #555; margin-bottom: 8px; }
+
+    /* Speed buttons */
+    .speed-btn { font-size: 11px; padding: 3px 8px; border-radius: 4px; border: 1px solid #ddd; background: #fff; cursor: pointer; font-family: 'Google Sans', sans-serif; }
+    .speed-btn.is-active { background: #4169e1; color: #fff; border-color: #4169e1; }
+
+    .hero-body .container { max-width: 960px; }
+    .section .container { max-width: 960px; }
+    .hero { padding-top: 60px; }
+
+    /* Action space */
+    .action-space-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    @media (max-width: 768px) { .action-space-grid { grid-template-columns: 1fr; } }
+    .action-group-box { border: 1px solid #e4e7f1; border-radius: 10px; padding: 14px; background: #f9fafe; }
+    .action-group-box h4 { font-family: 'Google Sans', sans-serif; font-size: 13px; font-weight: 700; color: #4169e1; text-transform: uppercase; letter-spacing: 0.03em; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid #e4e7f1; }
+    .action-row { display: flex; align-items: center; gap: 12px; padding: 4px 0; font-size: 13px; }
+    .action-row code { font-weight: 700; min-width: 28px; color: #27457e; }
+  </style>
+</head>
+<body>
+
+<!-- Top Navigation -->
+<nav class="top-nav">
+  <a href="#" class="nav-logo"><img src="static/images/scope.png" alt="SCOPE" style="height:26px;vertical-align:middle;"></a>
+  <ul class="nav-links">
+    <li><a href="#abstract">Abstract</a></li>
+    <li><a href="#method">Method</a></li>
+    <li><a href="#action-control">Action Control</a></li>
+    <li><a href="#scene-generalization">Scene Generalization</a></li>
+    <li><a href="#comparison">Comparison</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="https://github.com/z2tong/SCOPE" target="_blank">Code</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">
+            <span class="title-s">S</span><span class="title-c">C</span><span class="title-o">O</span><span class="title-p">P</span><span class="title-e">E</span>: <span class="title-s">S</span>imulating <span class="title-c">C</span>ross-game <span class="title-o">O</span>perations in <span class="title-p">P</span>layable <span class="title-e">E</span>nvironments for FPS World Models
+          </h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Zizhao Tong<sup>1,2</sup>,</span>
+            <span class="author-block">Hongfeng Lai<sup>2</sup>,</span>
+            <span class="author-block">Zeqing Wang<sup>2,3</sup>,</span>
+            <span class="author-block">Zhaohu Xing<sup>4</sup>,</span>
+            <span class="author-block">Kexu Cheng<sup>1</sup>,</span>
+            <span class="author-block">Haoran Xu<sup>5</sup>,</span>
+            <span class="author-block">Zhao Pu<sup>6</sup>,</span>
+            <span class="author-block">Shangwen Zhu<sup>6</sup>,</span>
+            <span class="author-block">Ruili Feng<sup>7</sup>,</span>
+            <span class="author-block">Jian Zhao<sup>8</sup>,</span>
+            <span class="author-block">Yan Zhang<sup>3</sup>,</span>
+            <span class="author-block">Hao Tang<sup>9</sup>,</span>
+            <span class="author-block">Yeying Jin<sup>2,3</sup>,</span>
+            <span class="author-block">Ling Shao<sup>1</sup></span>
+          </div>
+          <div class="affiliations">
+            <sup>1</sup>UCAS &nbsp; <sup>2</sup>Tencent &nbsp; <sup>3</sup>NUS &nbsp; <sup>4</sup>HKUST(GZ) &nbsp; <sup>5</sup>ZJU &nbsp; <sup>6</sup>SJTU &nbsp; <sup>7</sup>UWaterloo &nbsp; <sup>8</sup>ZGCAI &nbsp; <sup>9</sup>PKU
+          </div>
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block"><a href="https://arxiv.org/abs/XXXX.XXXXX" class="external-link button is-normal is-rounded is-dark"><span class="icon"><i class="ai ai-arxiv"></i></span><span>arXiv</span></a></span>
+              <span class="link-block"><a href="https://github.com/z2tong/SCOPE" class="external-link button is-normal is-rounded is-dark"><span class="icon"><i class="fab fa-github"></i></span><span>Code</span></a></span>
+              <span class="link-block"><a href="https://huggingface.co/zizhaotong/SCOPE" class="external-link button is-normal is-rounded is-dark"><span class="icon">&#129303;</span><span>Model</span></a></span>
+              <span class="link-block"><a href="https://huggingface.co/collections/zizhaotong/crossfps" class="external-link button is-normal is-rounded is-dark"><span class="icon"><i class="fas fa-database"></i></span><span>Dataset</span></a></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Abstract -->
+<section class="section" id="abstract">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 section-title">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>Interactive world models for first-person shooter (FPS) games must resolve high-frequency overlapping control signals at every frame without disrupting unaffected regions. Existing methods inject actions globally and train on single titles, failing under dense FPS inputs. We observe that FPS actions are spatially selective: discrete events such as firing or reloading affect only a localized region around the weapon (the scope), while continuous camera and movement signals govern stable surroundings. We propose <span class="scope-text"><span class="ts">S</span><span class="tc">C</span><span class="to">O</span><span class="tp">P</span><span class="te">E</span></span>, which inserts a conditioning module into each transformer block of a pretrained video diffusion model. It reshapes features into per-pixel temporal sequences so that each position computes its action response from local visual content. This separates in-scope effects from out-of-scope generation without segmentation labels. We also introduce CrossFPS, the first multi-game FPS dataset with frame-aligned action telemetry. It comprises 69K clips from 7 titles with 10-DoF controller signals, curated to remove gameplay bias. The model learns general visual-to-action mappings rather than game-specific patterns, enabling zero-shot transfer to unseen scenes. Experiments confirm strong action responsiveness, precise scope separation, and effective cross-game generalization.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Method -->
+<section class="section" id="method">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 section-title">Method</h2>
+    <div class="content has-text-justified">
+      <p><span class="scope-text"><span class="ts">S</span><span class="tc">C</span><span class="to">O</span><span class="tp">P</span><span class="te">E</span></span> inserts a spatial action decoupling module into each DiT block. Discrete events use cross-attention to confine effects to in-scope regions; continuous controls use MLP fusion and temporal self-attention for smooth ego-motion. All output projections are zero-initialized for stable residual training.</p>
+    </div>
+    <figure class="image"><img src="static/method.svg" alt="SCOPE architecture"></figure>
+    <p class="has-text-centered is-size-7 mt-2"><strong>Figure 1.</strong> <span class="scope-text"><span class="ts">S</span><span class="tc">C</span><span class="to">O</span><span class="tp">P</span><span class="te">E</span></span> architecture with dual-pathway spatial action decoupling module.</p>
+
+    <div class="content has-text-justified mt-5">
+      <p><span class="scope-text"><span class="ts">S</span><span class="tc">C</span><span class="to">O</span><span class="tp">P</span><span class="te">E</span></span> is trained on <strong>CrossFPS</strong>, a multi-game dataset with 69K clips from 7 FPS titles and frame-aligned 10-DoF gamepad telemetry.</p>
+    </div>
+    <figure class="image"><img src="static/dataset.svg" alt="CrossFPS dataset"></figure>
+    <p class="has-text-centered is-size-7 mt-2"><strong>Figure 2.</strong> CrossFPS: 69K clips across 7 FPS titles with per-frame 10-DoF action annotations.</p>
+  </div>
+</section>
+
+<!-- Rich Action Control -->
+<section class="section" id="action-control">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 section-title">Rich Action Control</h2>
+    <p class="content"><span class="scope-text"><span class="ts">S</span><span class="tc">C</span><span class="to">O</span><span class="tp">P</span><span class="te">E</span></span> supports dense per-frame 10-DoF control with simultaneous multi-action composition, enabling high playability across diverse unseen environments.</p>
+    <div class="video-grid" id="grid-ctrl"></div>
+  </div>
+</section>
+
+<!-- Scene Generalization -->
+<section class="section" id="scene-generalization">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 section-title">Zero-Shot Scene Generalization</h2>
+    <p class="content"><span class="scope-text"><span class="ts">S</span><span class="tc">C</span><span class="to">O</span><span class="tp">P</span><span class="te">E</span></span> generalizes zero-shot to unseen visual styles from a single context frame, without any fine-tuning.</p>
+    <div class="video-grid" id="grid-scenes"></div>
+  </div>
+</section>
+
+<!-- Comparison -->
+<section class="section" id="comparison">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 section-title">Comparison with Baselines</h2>
+    <p class="content">Side-by-side comparison with Wan2.2, HY-World 1.5, LingBot-World, and Matrix-Game 3.0.</p>
+    <div id="comparison-container"></div>
+  </div>
+</section>
+
+<!-- Quantitative Results -->
+<section class="section" id="results">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 section-title">Quantitative Results</h2>
+
+    <!-- Table 1: Main comparison -->
+    <p class="table-caption"><strong>Table 1.</strong> Quantitative comparison on the CrossFPS test set.</p>
+    <table class="results-table">
+      <thead>
+        <tr>
+          <th rowspan="2" class="method-col">Method</th>
+          <th colspan="3">Visual Quality</th>
+          <th colspan="3">Motion Quality</th>
+          <th colspan="2">Consistency</th>
+        </tr>
+        <tr>
+          <th>JEPA&uarr;</th><th>FVD&darr;</th><th>LPIPS&darr;</th>
+          <th>Dyn.Deg.&uarr;</th><th>Flow&uarr;</th><th>Smooth&uarr;</th>
+          <th>Photo.&darr;</th><th>Depth&darr;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="method-col">Matrix-Game 3.0</td><td>0.366</td><td>1022.7</td><td>0.692</td><td class="third">0.661</td><td class="third">13.36</td><td class="best">2.502</td><td>1.194</td><td>1.524</td></tr>
+        <tr><td class="method-col">LingBot-World (Act)</td><td class="second">0.615</td><td class="second">954.4</td><td class="third">0.627</td><td class="second">0.868</td><td class="second">15.50</td><td class="third">2.215</td><td class="second">0.626</td><td class="second">1.454</td></tr>
+        <tr><td class="method-col">HY-World 1.5</td><td class="third">0.464</td><td>1131.7</td><td class="second">0.611</td><td>0.225</td><td>2.37</td><td>1.690</td><td>2.523</td><td class="third">1.502</td></tr>
+        <tr class="row-ours"><td class="method-col">SCOPE (Ours)</td><td class="best">0.806</td><td class="best">690.3</td><td class="best">0.601</td><td class="best">0.910</td><td class="best">18.24</td><td class="second">2.383</td><td class="best">0.198</td><td class="best">1.299</td></tr>
+      </tbody>
+    </table>
+
+    <!-- Table 2: Zero-shot generalization -->
+    <p class="table-caption mt-5"><strong>Table 2.</strong> Visual quality on unseen scenes (50 clips per category, first frames from GPT-image-2).</p>
+    <table class="results-table">
+      <thead>
+        <tr><th class="method-col">Scene Style</th><th>JEPA&uarr;</th><th>LPIPS&darr;</th><th>Flow&uarr;</th><th>Photo.&darr;</th><th>Smooth&uarr;</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="method-col">Stylized open-world</td><td>0.772</td><td>0.618</td><td>17.45</td><td>0.235</td><td>2.341</td></tr>
+        <tr><td class="method-col">Cooperative adventure</td><td>0.758</td><td>0.632</td><td>16.89</td><td>0.251</td><td>2.298</td></tr>
+        <tr><td class="method-col">Mythological action</td><td>0.781</td><td>0.612</td><td>17.82</td><td>0.224</td><td>2.356</td></tr>
+        <tr><td class="method-col">Sci-fi corridor</td><td>0.795</td><td>0.605</td><td>18.01</td><td>0.212</td><td>2.370</td></tr>
+        <tr style="border-top:2px solid #ddd;"><td class="method-col">Average (unseen)</td><td>0.777</td><td>0.617</td><td>17.54</td><td>0.231</td><td>2.341</td></tr>
+        <tr class="row-ours"><td class="method-col">In-distribution (ref.)</td><td>0.806</td><td>0.601</td><td>18.24</td><td>0.198</td><td>2.383</td></tr>
+      </tbody>
+    </table>
+
+    <!-- Table 3: Action controllability -->
+    <p class="table-caption mt-5"><strong>Table 3.</strong> Action controllability on unseen scenes. Completion rate (N=50 per task).</p>
+    <div style="overflow-x:auto;">
+    <table class="results-table">
+      <thead>
+        <tr>
+          <th rowspan="2" class="method-col">Method</th>
+          <th colspan="2">Single Action</th>
+          <th colspan="3">Multi-Action Composition</th>
+          <th colspan="3">Action-Environment Interaction</th>
+          <th rowspan="2">Avg.</th>
+        </tr>
+        <tr>
+          <th>Fire</th><th>Scope</th><th>Scope+Fire</th><th>Move+Fire</th><th>Switch+Fire</th><th>Object</th><th>Environment</th><th>NPC</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="method-col">Matrix-Game 3.0</td><td>0%</td><td>0%</td><td>0%</td><td>4%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0.5%</td></tr>
+        <tr><td class="method-col">HY-World 1.5</td><td>4%</td><td>12%</td><td>2%</td><td>36%</td><td>2%</td><td>0%</td><td>6%</td><td>2%</td><td>8.0%</td></tr>
+        <tr><td class="method-col">LingBot-World (Act)</td><td>82%</td><td>74%</td><td>42%</td><td>18%</td><td>26%</td><td>12%</td><td>32%</td><td>20%</td><td>38.3%</td></tr>
+        <tr class="row-ours"><td class="method-col">SCOPE (Ours)</td><td class="best">94%</td><td class="best">90%</td><td class="best">82%</td><td class="best">76%</td><td class="best">68%</td><td class="best">46%</td><td class="best">62%</td><td class="best">54%</td><td class="best">71.5%</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+<!-- BibTeX -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{tong2026scope,
+  title={SCOPE: Simulating Cross-game Operations in Playable Environments for FPS World Models},
+  author={Zizhao Tong and Hongfeng Lai and Zeqing Wang and Zhaohu Xing and Kexu Cheng and Haoran Xu and Zhao Pu and Shangwen Zhu and Ruili Feng and Jian Zhao and Yan Zhang and Hao Tang and Yeying Jin and Ling Shao},
+  year={2026}
+}</code></pre>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content has-text-centered">
+          <p>This website template is borrowed from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> and <a href="https://johnson111788.github.io/open-safari/">Open-Safari</a>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── Video card with play/speed controls ──
+function makeVideoCard(src, label, isHighlight) {
+  const card = document.createElement('div');
+  card.className = 'video-card' + (isHighlight ? ' highlight' : '');
+  card.innerHTML = `
+    <video src="${src}" loop playsinline preload="metadata" muted></video>
+    <div class="card-label">${label}</div>
+    <div class="card-controls">
+      <button class="play-btn-card"><i class="fas fa-play"></i></button>
+      <button class="speed-btn is-active" data-speed="1">1x</button>
+      <button class="speed-btn" data-speed="0.5">0.5x</button>
+      <button class="speed-btn" data-speed="0.25">0.25x</button>
+    </div>
+  `;
+  const video = card.querySelector('video');
+  const playBtn = card.querySelector('.play-btn-card');
+  playBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (video.paused) { video.currentTime = 0; video.play(); playBtn.innerHTML = '<i class="fas fa-pause"></i>'; }
+    else { video.pause(); playBtn.innerHTML = '<i class="fas fa-play"></i>'; }
+  });
+  card.querySelectorAll('.speed-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      video.playbackRate = parseFloat(btn.dataset.speed);
+      card.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+    });
+  });
+  return card;
+}
+
+// ── Rich Action Control ──
+const ctrlGrid = document.getElementById('grid-ctrl');
+[
+  ['static/videos/ctrl_scope_fire1.mp4', 'Call of Duty Style: Post-Apocalyptic Outpost'],
+  ['static/videos/ctrl_scope_fire2.mp4', 'Call of Duty Style: Urban Combat Zone'],
+  ['static/videos/ctrl_fire_reload.mp4', 'Genshin Impact Style: Open-World Grassland'],
+  ['static/videos/15.mp4', 'Custom Scene: Ancient Roman Colosseum'],
+  ['static/videos/14.mp4', 'Custom Scene: Traditional Japanese Temple'],
+  ['static/videos/13.mp4', 'Custom Scene: Modern Metropolitan Boulevard'],
+  ['static/videos/12_new.mp4', 'Genshin Impact Style: Lakeside Meadow'],
+  ['static/videos/8.mp4', 'Call of Duty Style: Warzone Settlement'],
+  ['static/videos/9.mp4', 'Call of Duty Style: Aerial Battlefield'],
+].forEach(([src, label]) => ctrlGrid.appendChild(makeVideoCard(src, label, false)));
+
+// ── Zero-Shot Scene Generalization ──
+const scenesGrid = document.getElementById('grid-scenes');
+[
+  ['static/videos/1.mp4', 'It Takes Two Style: Miniature Fantasy Garden', false],
+  ['static/videos/1_highlight.mp4', 'It Takes Two Style: Fantasy Garden (Highlight)', true],
+  ['static/videos/2.mp4', 'It Takes Two Style: Enchanted Cliffside Trail', false],
+  ['static/videos/3.mp4', 'Genshin Impact Style: Eastern Fantasy Lakeside', false],
+  ['static/videos/3_highlight.mp4', 'Genshin Impact Style: Eastern Lakeside (Highlight)', true],
+  ['static/videos/4.mp4', 'Genshin Impact Style: Open-World Riverside', false],
+  ['static/videos/5.mp4', 'Genshin Impact Style: Verdant Highland', false],
+  ['static/videos/6.mp4', 'Black Myth Wukong Style: Ancient Mountain Temple', false],
+  ['static/videos/7.mp4', 'Black Myth Wukong Style: Misty Pagoda Ravine', false],
+  ['static/videos/7_highlight.mp4', 'Black Myth Wukong Style: Pagoda Ravine (Highlight)', true],
+  ['static/videos/11.mp4', 'Custom Scene: Arid Canyon with Hostile NPC', false],
+  ['static/videos/11_highlight.mp4', 'Custom Scene: Arid Canyon (Highlight)', true],
+  ['static/videos/10.mp4', 'Call of Duty Style: Urban Warzone Rooftop', false],
+  ['static/videos/12.mp4', 'Xonotic Style: Arena', false],
+  ['static/videos/xonotic_1.mp4', 'Xonotic Style: Corridor Navigation', false],
+].forEach(([src, label, hl]) => scenesGrid.appendChild(makeVideoCard(src, label, hl)));
+
+// ── Comparison ──
+const compContainer = document.getElementById('comparison-container');
+[
+  { title: 'It Takes Two', videos: ['1_concat.mp4', '2_concat.mp4'] },
+  { title: 'Genshin Impact', videos: ['3_concat.mp4', '5_concat.mp4'] },
+  { title: 'Black Myth: Wukong', videos: ['6_concat.mp4', '7_concat.mp4'] },
+  { title: 'Call of Duty: Modern Warfare', videos: ['codmw3_concat.mp4', 'mw_c23_concat.mp4'] },
+  { title: 'Halo Infinite', videos: ['halo_concat.mp4'] },
+  { title: 'Xonotic', videos: ['wc_concat.mp4'] },
+].forEach(group => {
+  const section = document.createElement('div');
+  section.className = 'compare-block';
+  section.innerHTML = `<h3 class="title is-5">${group.title}</h3>`;
+  group.videos.forEach(vf => {
+    const wrap = document.createElement('div');
+    wrap.className = 'compare-video-wrap';
+    wrap.innerHTML = `
+      <div class="compare-labels">
+        <span class="label-baseline">Wan2.2</span>
+        <span class="label-baseline">HY-World 1.5</span>
+        <span class="label-baseline">LingBot-World</span>
+        <span class="label-baseline">Matrix-Game 3.0</span>
+        <span class="label-ours">SCOPE (Ours)</span>
+      </div>
+      <video src="static/videos/compare/${vf}" loop playsinline preload="metadata" muted></video>
+    `;
+    section.appendChild(wrap);
+    const controls = document.createElement('div');
+    controls.className = 'compare-controls mb-4';
+    const playBtn = document.createElement('button');
+    playBtn.className = 'button is-small is-info';
+    playBtn.innerHTML = '<span class="icon"><i class="fas fa-play"></i></span><span>Play</span>';
+    const video = wrap.querySelector('video');
+    playBtn.addEventListener('click', () => {
+      if (video.paused) { video.currentTime = 0; video.play(); playBtn.innerHTML = '<span class="icon"><i class="fas fa-pause"></i></span><span>Pause</span>'; }
+      else { video.pause(); playBtn.innerHTML = '<span class="icon"><i class="fas fa-play"></i></span><span>Play</span>'; }
+    });
+    controls.appendChild(playBtn);
+    [0.25, 0.5, 1].forEach(speed => {
+      const btn = document.createElement('button');
+      btn.className = 'speed-btn' + (speed === 1 ? ' is-active' : '');
+      btn.textContent = speed + 'x';
+      btn.addEventListener('click', () => { video.playbackRate = speed; controls.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('is-active')); btn.classList.add('is-active'); });
+      controls.appendChild(btn);
+    });
+    section.appendChild(controls);
+  });
+  compContainer.appendChild(section);
+});
+</script>
+</body>
+</html>
