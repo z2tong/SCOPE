@@ -10,7 +10,7 @@
 
 <div align="center">
 
-[![Project Page](https://img.shields.io/badge/Project%20Page-SCOPE-blue)](https://github.com/z2tong/SCOPE)
+[![Project Page](https://img.shields.io/badge/Project%20Page-SCOPE-blue)](https://z2tong.github.io/SCOPE/)
 [![arXiv](https://img.shields.io/badge/arXiv-Paper-red?logo=arxiv)](https://arxiv.org/abs/XXXX.XXXXX)
 [![Model](https://img.shields.io/static/v1?label=%F0%9F%A4%97%20Model&message=HuggingFace&color=yellow)](https://huggingface.co/zizhaotong/SCOPE)
 [![Dataset](https://img.shields.io/static/v1?label=%F0%9F%A4%97%20Dataset&message=CrossFPS&color=orange)](https://huggingface.co/collections/zizhaotong/crossfps)
