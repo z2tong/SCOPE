@@ -11,7 +11,7 @@
 <div align="center">
 
 [![Project Page](https://img.shields.io/badge/Project%20Page-SCOPE-blue)](https://z2tong.github.io/SCOPE/)
-[![arXiv](https://img.shields.io/badge/arXiv-Paper-red?logo=arxiv)](https://arxiv.org/abs/XXXX.XXXXX)
+[![arXiv](https://img.shields.io/badge/arXiv-Paper-red?logo=arxiv)](https://arxiv.org/abs/2605.23345)
 [![Model](https://img.shields.io/static/v1?label=%F0%9F%A4%97%20Model&message=HuggingFace&color=yellow)](https://huggingface.co/zizhaotong/SCOPE)
 [![Dataset](https://img.shields.io/static/v1?label=%F0%9F%A4%97%20Dataset&message=CrossFPS&color=orange)](https://huggingface.co/collections/zizhaotong/crossfps)
 [![License](https://img.shields.io/badge/License-Apache%202.0-green)](LICENSE)
@@ -252,9 +252,13 @@ We would like to express our gratitude to the following open-source projects for
 If you find this work useful for your research, please cite our paper:
 
 ```bibtex
-@article{scope2026,
-  title={SCOPE: Simulating Cross-game Operations in Playable Environments for FPS World Models},
-  author={Zizhao Tong and Hongfeng Lai and Zeqing Wang and Zhaohu Xing and Kexu Cheng and Haoran Xu and Zhao Pu and Shangwen Zhu and Ruili Feng and Jian Zhao and Yan Zhang and Hao Tang and Yeying Jin and Ling Shao},
-  year={2026}
+@misc{scope2026,
+      title={SCOPE: Simulating Cross-game Operations in Playable Environments for FPS World Models},
+      author={Zizhao Tong and Hongfeng Lai and Zeqing Wang and Zhaohu Xing and Kexu Cheng and Haoran Xu and Zhao Pu and Shangwen Zhu and Ruili Feng and Jian Zhao and Yan Zhang and Hao Tang and Yeying Jin and Ling Shao},
+      year={2026},
+      eprint={2605.23345},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2605.23345}, 
 }
 ```
