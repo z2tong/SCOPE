@@ -14,6 +14,7 @@
 [![arXiv](https://img.shields.io/badge/arXiv-Paper-red?logo=arxiv)](https://arxiv.org/abs/2605.23345)
 [![Model](https://img.shields.io/static/v1?label=%F0%9F%A4%97%20Model&message=HuggingFace&color=yellow)](https://huggingface.co/zizhaotong/SCOPE)
 [![Dataset](https://img.shields.io/static/v1?label=%F0%9F%A4%97%20Dataset&message=CrossFPS&color=orange)](https://huggingface.co/collections/zizhaotong/crossfps)
+[![ModelScope](https://img.shields.io/badge/ModelScope-SCOPE-purple?logo=modelscope)](https://www.modelscope.cn/collections/zztong/SCOPE)
 [![License](https://img.shields.io/badge/License-Apache%202.0-green)](LICENSE)
 
 
